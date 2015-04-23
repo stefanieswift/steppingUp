@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Welcome to SteppingUp!</h1>
+</div>
+<h1>Calculate your route</h1>
+    <form id="calculate-route" name="calculate-route" action="#" method="get">
+      <label for="from">From:</label>
+      <input type="text" id="from" name="from" required="required" placeholder="Starting address" size="30" />
+      <a id="from-link" href="#">Get my position</a>
+      <br />
+
+      <label for="to">To:</label>
+      <input type="text" id="to" name="to" required="required" placeholder="Destination address" size="30" />
+      <a id="to-link" href="#">Get my position</a>
+      <br />
+      <input type="integer" id="steps" name="steps" required="required" placeholder="Desired steps" />
+
+      <input type="submit" />
+      <input type="reset" />
+    </form>
+    <div id="map"></div>
+    <p id="error"></p>
