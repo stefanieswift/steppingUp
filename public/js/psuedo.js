@@ -4,4 +4,4 @@
 // 4. Continue to add waypoints until the distance > desired steps distance
 // 5. display directions on map
 
-  steps = Number(document.getElementById('steps'))/1320;
+  // steps = Number(document.getElementById('steps'))/1320;

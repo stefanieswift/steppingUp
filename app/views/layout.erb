@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
   <link rel="stylesheet" href="/css/normalize.css">
   <!--
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
-   <!-- <script src="/js/maps.js"></script> -->
-   <script src="/js/map.js"></script>
-   <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["API_KEY"]%>">
-    </script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <title>Stepping Up</title>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["API_KEY"]%>"> </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 </head>
 <body>
   <%= yield %>
+  <script src="/js/application.js"></script>
+   <script src="/js/map.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: white;
   }
 h1 {
   text-align: center;
@@ -16,9 +17,9 @@ h1 {
   text-align: center;
 }
 
-#map {
+#map-canvas {
   height: 50%;
   width: 50%;
   margin: 0 auto;
   padding: 5%;
-  border: 2px solid black;}
+  border: 2px solid white;}
