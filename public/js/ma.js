@@ -94,6 +94,7 @@ function showMap()
     suppressInfoWindows: true
   });
   directionsDisplay.setMap(map);
+   directionsDisplay.setPanel(document.getElementById('directions-panel'))
   var request = {
     origin:location1,
     destination:location2,
