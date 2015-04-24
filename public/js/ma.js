@@ -1,5 +1,4 @@
 // testing the location between the two points
-$("#waypoint_canvas").hide();
 var location1;
 var location2;
 
@@ -7,13 +6,15 @@ var address1;
 var address2;
 
 var latlng;
-
-
 var geocoder;
 var map;
 
 var distance;
 var stepDistance;
+var distanced;
+var steppingDistanceDifference;
+var waypts = [];
+var latlngPush;
 
 // finds the coordinates for the two locations and calls the showMap() function
 function initialize()
@@ -24,6 +25,7 @@ function initialize()
   address1 = document.getElementById("address1").value;
   address2 = document.getElementById("address2").value;
   stepDistance = (document.getElementById("steps").value)/1.3123359580052494;
+
 
   // finding out the coordinates
   if (geocoder)
@@ -60,6 +62,13 @@ function showMap()
 {
   // center of the map (compute the mean value between the two locations)
   latlng = new google.maps.LatLng((location1.lat()+location2.lat())/2,(location1.lng()+location2.lng())/2);
+  var bigger;
+  if (location1.lat() > location2.lat()){
+    bigger = location1.lat();
+  } else{
+    bigger = location2.lat();
+  }
+
 
   // set map options
     // set zoom level
@@ -90,6 +99,8 @@ function showMap()
     destination:location2,
     travelMode: google.maps.DirectionsTravelMode.WALKING
   };
+
+
   directionsService.route(request, function(response, status)
   {
     if (status == google.maps.DirectionsStatus.OK)
@@ -99,10 +110,31 @@ function showMap()
     }
     if(distance > stepDistance){
       directionsDisplay.setDirections(response);
+      alert("Your step count is smaller than the fastest route")
     } else {
-      $("#map_canvas").hide();
-      $("#waypoint_canvas").show();
-      waypointRoute(distance);
+      steppingDistanceDifference = (stepDistance - distance)/2/110574.61;
+      latlngPush = new google.maps.LatLng((bigger+steppingDistanceDifference),(location1.lng()+location2.lng())/2);
+      waypts.push({
+       location:latlngPush,
+       stopover:true
+      });
+      var newRequest = {
+        origin:location1,
+        destination:location2,
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        travelMode: google.maps.DirectionsTravelMode.WALKING
+      };
+      directionsService.route(newRequest, function(newResponse, status)
+    {
+      if (status == google.maps.DirectionsStatus.OK)
+      {
+        directionsDisplay.setDirections(newResponse);
+        distanced = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
+        alert(distanced);
+      }
+    });
+
     }; //closing else
   });
 
@@ -152,6 +184,7 @@ function showMap()
     content: text2
   });
 
+
   // add action events so the info windows will be shown when the marker is clicked
   google.maps.event.addListener(marker1, 'click', function() {
     infowindow1.open(map,marker1);
@@ -168,3 +201,40 @@ function toRad(deg)
 
 
 // funcion to test added
+
+
+
+// If the browser supports the Geolocation API
+if (typeof navigator.geolocation == "undefined") {
+  $("#error").text("Your browser doesn't support the Geolocation API");
+}
+
+$("#from-link, #to-link").click(function(event) {
+  event.preventDefault();
+  var addressId = this.id.substring(0, this.id.indexOf("-"));
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+      "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+    },
+    function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK)
+        $("#" + addressId).val(results[0].formatted_address);
+      else
+        $("#error").append("Unable to retrieve your address<br />");
+    });
+  },
+  function(positionError){
+    $("#error").append("Error: " + positionError.message + "<br />");
+  },
+  {
+    enableHighAccuracy: true,
+    timeout: 10 * 1000 // 10 seconds
+  });
+});
+
+$("#calculate-route").submit(function(event) {
+  event.preventDefault();
+  calculateRoute($("#from").val(), $("#to").val());
+});

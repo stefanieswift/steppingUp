@@ -17,9 +17,21 @@ h1 {
   text-align: center;
 }
 
-#map-canvas {
-  height: 50%;
+#map_canvas {
+  height: 100%;
   width: 50%;
   margin: 0 auto;
   padding: 5%;
-  border: 2px solid white;}
+  border: 2px solid black;}
+
+  #waypoint_canvas {
+  height: 100%;
+  width: 50%;
+  margin: 0 auto;
+  padding: 5%;
+  border: 2px solid red;}
+
+  #form {
+   display: flex;
+   width: 100%;
+  }
