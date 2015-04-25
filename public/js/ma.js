@@ -16,22 +16,19 @@ $(document).ready(function(){
 
 
 // testing the location between the two points
-var location1;
-var location2;
-
-var from;
-var to;
-
-var latlng;
-var geocoder;
-var map;
-
-var distance;
-var stepDistance;
-var distanced;
-var steppingDistanceDifference;
-var waypts = [];
-var latlngPush;
+var location1,
+    location2,
+    from,
+    to,
+    latlng,
+    geocoder;
+    map,
+    distance,
+    stepDistance,
+    distanced,
+    steppingDistanceDifference,
+    waypts = [],
+    latlngPush;
 
 // finds the coordinates for the two locations and calls the showMap() function
 function initialize()
@@ -77,9 +74,12 @@ function initialize()
 // creates and shows the map
 function showMap()
 {
+  var bigger,
+      smaller,
+      biggerLng,
+      smallerLng;
   // center of the map (compute the mean value between the two locations)
   latlng = new google.maps.LatLng((location1.lat()+location2.lat())/2,(location1.lng()+location2.lng())/2);
-  var bigger;
   if (location1.lat() > location2.lat()){
     bigger = location1.lat();
     smaller = location2.lat();
