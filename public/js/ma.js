@@ -234,8 +234,3 @@ $("#from-link, #to-link").click(function(event) {
     timeout: 10 * 1000 // 10 seconds
   });
 });
-
-$("#calculate-route").submit(function(event) {
-  event.preventDefault();
-  calculateRoute($("#from").val(), $("#to").val());
-});

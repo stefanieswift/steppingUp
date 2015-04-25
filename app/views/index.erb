@@ -1,22 +1,21 @@
-<div class="container">
+<header class="container">
   <h1>Welcome to SteppingUp!</h1>
-</div>
+</header>
 <div id="form">
-  <form>
-    <p>
+  <form id="calculate-route" name="calculate-route" action="#" method="get">
       <label>First address: </label>
-      <input type="text" name="address1" id="address1" size="50"/></p>
-    <p>
+      <input type="text" name="address1" id="address1" size="50"/>
+      <a id="from-link" href="#">Get my position</a>
        <label>Second address: </label>
-       <input type="text" name="address2" id="address2" size="50"/></p>
-    <p>
+       <input type="text" name="address2" id="address2" size="50"/>
+       <a id="to-link" href="#">Get my position</a>
        <label>Step Count: </label>
-       <input type="integer" name="steps" id="steps" size="10"/></p>
-    <p>
-      <input type="button" value="Show" onclick="initialize();"/></p>
+       <input type="integer" name="steps" id="steps" size="10"/>
+      <input type="button" value="Show"  onclick="initialize();"/>
+      </form>
   </div>
-  <center><div style="width:100%; height:10%" id="distance_direct"></div></center>
-  <center><div style="width:100%; height:10%" id="distance_road"></div></center>
 
-  <div id="map_canvas"></div></center>
-  <div id="directions-panel"></div>
+  <div id = "map_route">
+    <div id="map_canvas"></div>
+    <div id="directions-panel"></div>
+  </div>

@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+
 html {
   height: 100%
 }
@@ -6,37 +8,36 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: white;
-  }
+}
+
 h1 {
   text-align: center;
 }
 
-#map-info-form {
-  margin: 0 auto;
-  text-align: center;
-}
 
 #map_canvas {
-  height: 100%;
-  width: 50%;
-  margin: 0 auto;
-  padding: 5%;
-  border: 2px solid black;}
-
-  #waypoint_canvas {
-  height: 100%;
-  width: 50%;
-  margin: 0 auto;
-  padding: 5%;
-  border: 2px solid red;}
-
-  #form {
-   display: flex;
-   width: 100%;
-  }
+  height: auto;
+  width: 70%;
+}
 
 #directions-panel {
-          float: none;
-          width: auto;
-        }
+  float: none;
+  width: 30%;
+
+}
+
+#map_route {
+  display: flex;
+  clear: both;
+   margin: 0 auto;
+   height: auto;
+
+}
+
+#calculate_route input{
+ border: 2px solid #090768;
+background-color: #F1EEE9;
+color: #090768;
+font-family: 'Indie Flower', serif;
+display: inline;
+}
