@@ -2,7 +2,7 @@ $(document).ready(function(){
   $("#form").hide();
   $("#show_form").on("click", function(){
     $(this).hide();
-    $("#form").show();
+    $("#form").show().modal();
   });
 
   var myOptions = {
@@ -82,10 +82,19 @@ function showMap()
   var bigger;
   if (location1.lat() > location2.lat()){
     bigger = location1.lat();
+    smaller = location2.lat();
   } else{
     bigger = location2.lat();
+    smaller = location2.lat();
   }
-
+  var biggerLng;
+  if (location1.lng() > location2.lng()){
+    biggerLng = location1.lng();
+    smallerLng = location2.lng();
+  } else{
+    biggerLng = location2.lng();
+    smallerLng = location2.lng();
+  }
 
   // set map options
     // set zoom level
@@ -115,7 +124,10 @@ function showMap()
   var request = {
     origin:location1,
     destination:location2,
-    travelMode: google.maps.DirectionsTravelMode.WALKING
+    travelMode: google.maps.DirectionsTravelMode.WALKING,
+    avoidHighways: true,
+    avoidTolls: true,
+    avoidFerries: true,
   };
 
 
@@ -130,10 +142,15 @@ function showMap()
       directionsDisplay.setDirections(response);
       alert("Your step count is smaller than the fastest route")
     } else {
-      steppingDistanceDifference = (stepDistance - distance)/2/110574.61;
-      latlngPush = new google.maps.LatLng((bigger+steppingDistanceDifference),(location1.lng()+location2.lng())/2);
+      steppingDistanceDifference = (stepDistance - distance)/2.2/110574.61;
+      latlngPush1 = new google.maps.LatLng((bigger+(steppingDistanceDifference/2)),(location1.lng()+location2.lng())/2);
+      latlngPush2 = new google.maps.LatLng((location1.lat()+location2.lat())/2),(biggerLng+(steppingDistanceDifference/2));
       waypts.push({
-       location:latlngPush,
+       location:latlngPush1,
+       stopover:true
+      });
+      waypts.push({
+       location:latlngPush2,
        stopover:true
       });
       var newRequest = {
@@ -141,7 +158,10 @@ function showMap()
         destination:location2,
         waypoints: waypts,
         optimizeWaypoints: true,
-        travelMode: google.maps.DirectionsTravelMode.WALKING
+        travelMode: google.maps.DirectionsTravelMode.WALKING,
+        avoidHighways: true,
+        avoidTolls: true,
+        avoidFerries: true,
       };
       directionsService.route(newRequest, function(newResponse, status)
     {
