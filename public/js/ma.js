@@ -1,3 +1,20 @@
+$(document).ready(function(){
+  $("#form").hide();
+  $("#show_form").on("click", function(){
+    $(this).hide();
+    $("#form").show();
+  });
+
+  var myOptions = {
+          zoom: 10,
+          center: new google.maps.LatLng(40.84, 14.25),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // Draw the map
+        var mapObject = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      });
+
+
 // testing the location between the two points
 var location1;
 var location2;

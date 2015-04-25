@@ -1,7 +1,20 @@
-@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+@import url(http://fonts.googleapis.com/css?family=News+Cycle);
 
 html {
   height: 100%
+}
+
+.container {
+  display: flex;
+}
+h1 {
+  font-family: 'News Cycle', sans-serif;
+  color: #CCCCFF;
+  float: left;
+}
+
+h1:hover {
+  color: DarkBlue;
 }
 
 body {
@@ -16,14 +29,14 @@ h1 {
 
 
 #map_canvas {
-  height: auto;
   width: 70%;
+  border: 2px solid black;
+  height: 100%;
 }
 
 #directions-panel {
-  float: none;
   width: 30%;
-
+  overflow: scroll;
 }
 
 #map_route {
@@ -31,13 +44,71 @@ h1 {
   clear: both;
    margin: 0 auto;
    height: auto;
-
+   flex-direction: row;
+   flex-wrap: wrap;
+   height: 50%;
+   border: 2px black solid;
 }
 
-#calculate_route input{
- border: 2px solid #090768;
-background-color: #F1EEE9;
-color: #090768;
-font-family: 'Indie Flower', serif;
-display: inline;
+#form {
+  clear:both;
+}
+
+form label{
+  display: block;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 1em;
+  font-family: 'News Cycle', sans-serif;
+}
+
+form input{
+  display: block;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  text-align: left;
+}
+
+form a {
+    display: block;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  text-align: right;
+  font-family: 'News Cycle', sans-serif;
+}
+
+#submit {
+  background-color: #CCCCFF;
+  margin: auto;
+  border-radius: 10%;
+  border: 3px solid DarkBlue;
+  color: DarkBlue;
+  text-align: center
+}
+
+#submit:hover {
+  background-color: DarkBlue;
+  color: #CCCCFF;
+  border: 1px solid #CCCCFF;
+}
+
+#show_form {
+  background-color: #CCCCFF;
+  margin: auto;
+  border: 1px solid DarkBlue;
+  color: DarkBlue;
+}
+
+#show_form:hover {
+  background-color: DarkBlue;
+  float: left;
+  border-radius: 10%;
+  color: #CCCCFF;
+  border: 3px solid #CCCCFF;
 }
