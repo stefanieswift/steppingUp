@@ -2,8 +2,8 @@
 var location1;
 var location2;
 
-var address1;
-var address2;
+var from;
+var to;
 
 var latlng;
 var geocoder;
@@ -22,15 +22,15 @@ function initialize()
   geocoder = new google.maps.Geocoder(); // creating a new geocode object
 
   // getting the two address values
-  address1 = document.getElementById("address1").value;
-  address2 = document.getElementById("address2").value;
+  from = document.getElementById("from").value;
+  to = document.getElementById("to").value;
   stepDistance = (document.getElementById("steps").value)/1.3123359580052494;
 
 
   // finding out the coordinates
   if (geocoder)
   {
-    geocoder.geocode( { 'address': address1}, function(results, status)
+    geocoder.geocode( { 'address': from}, function(results, status)
     {
       if (status == google.maps.GeocoderStatus.OK)
       {
@@ -41,7 +41,7 @@ function initialize()
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
-    geocoder.geocode( { 'address': address2}, function(results, status)
+    geocoder.geocode( { 'address': to}, function(results, status)
     {
       if (status == google.maps.GeocoderStatus.OK)
       {
@@ -165,7 +165,7 @@ function showMap()
       '<h1 id="firstHeading">First location</h1>'+
       '<div id="bodyContent">'+
       '<p>Coordinates: '+location1+'</p>'+
-      '<p>Address: '+address1+'</p>'+
+      '<p>Address: '+from+'</p>'+
       '</div>'+
       '</div>';
 
@@ -173,7 +173,7 @@ function showMap()
     '<h1 id="firstHeading">Second location</h1>'+
     '<div id="bodyContent">'+
     '<p>Coordinates: '+location2+'</p>'+
-    '<p>Address: '+address2+'</p>'+
+    '<p>Address: '+to+'</p>'+
     '</div>'+
     '</div>';
 
